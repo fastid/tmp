@@ -37,7 +37,7 @@ jobs:
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
-          - with:
-            files: coverage.out
-            flags: unittests
-            verbose: true
+        with:
+          files: coverage.out
+          flags: unittests
+          verbose: true
