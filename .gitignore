@@ -1,4 +1,4 @@
-# Binaries for programs and plugins
+# Standart github .gitignore
 *.exe
 *.exe~
 *.dll
@@ -11,5 +11,8 @@
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
 
-# Dependency directories (remove the comment below to include it)
-# vendor/
+# GoLand IDE ignore
+.idea/
+.env
+coverage.*
+fastid

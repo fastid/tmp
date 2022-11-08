@@ -1,0 +1,11 @@
+debug: false
+
+logger:
+  level: info
+
+http:
+  listen: ':8000'
+
+database:
+  user: 'user'
+  password: 'password'

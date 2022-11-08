@@ -1,0 +1,25 @@
+name: Testing
+
+on:
+  push:
+    branches:
+      - main
+      - 'releases/**'
+      - 'hotfix/**'
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  tests:
+    name: "Testing code"
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v3
+        with:
+          go-version: '^1.19.3'
+          check-latest: true
+      - run: go test ./...
