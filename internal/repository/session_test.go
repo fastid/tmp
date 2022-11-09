@@ -1,31 +1,33 @@
 package repository
 
 import (
-	"fmt"
+	"context"
 	"github.com/fastid/fastid/internal/config"
+	"github.com/fastid/fastid/internal/db"
+	"github.com/fastid/fastid/internal/logger"
+	"github.com/stretchr/testify/require"
 	"testing"
 )
 
 func TestSession(t *testing.T) {
-	t.Parallel()
-	//ctx := context.Background()
-
 	cfg, err := config.NewConfig("../../configs/config.yml")
 	if err != nil {
 		t.Fatalf("%s", err.Error())
 	}
-	fmt.Println(cfg)
+	log := logger.NewLogger(cfg)
 
-	//repo := NewSessionsRepository(cfg, mockPool)
+	database, err := db.NewDB(cfg, "sqlite3")
+	if err != nil {
+		log.Fatalln(err.Error())
+	}
 
-	//err = repo.Create()
-	//if err != nil {
-	//	t.Fatalf("error %s", err.Error())
-	//}
+	ctx := context.Background()
 
-	//err = repo.Create()
-	//if err != nil {
-	//	t.Fatalf("error %s", err.Error())
-	//}
+	sessionsRepository := NewSessionsRepository(cfg, log, database)
 
+	t.Run("First test", func(t *testing.T) {
+		id, err := sessionsRepository.GetByID(ctx)
+		require.NoError(t, err)
+		require.Equal(t, id, "hello word")
+	})
 }

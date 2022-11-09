@@ -31,9 +31,6 @@ func Run(cfg *config.Config) {
 
 	group := e.Group("/api/v1")
 
-	// Context
-	ctx := context.Background()
-
 	// Logger
 	log := logger.NewLogger(cfg)
 	log.Infoln("Starting the server")
@@ -64,7 +61,7 @@ func Run(cfg *config.Config) {
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, os.Interrupt)
 	<-quit
-	ctxShutdown, cancel := context.WithTimeout(ctx, 10*time.Second)
+	ctxShutdown, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	if err := e.Shutdown(ctxShutdown); err != nil {
 		e.Logger.Fatal(err)
