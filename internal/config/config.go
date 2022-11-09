@@ -39,13 +39,13 @@ type (
 func NewConfig(path string) (*Config, error) {
 	cfg := &Config{}
 
-	cleanenv.ReadConfig(".env", cfg)
+	_ = cleanenv.ReadConfig(".env", cfg)
 
 	err := cleanenv.ReadConfig(path, cfg)
 	if err != nil {
 		return nil, err
 	}
 
-	cleanenv.ReadEnv(cfg)
+	_ = cleanenv.ReadEnv(cfg)
 	return cfg, nil
 }
