@@ -11,18 +11,11 @@ import (
 	"github.com/labstack/echo/v4"
 	_ "github.com/lib/pq"
 	_ "github.com/mattn/go-sqlite3"
-	"gorm.io/gorm"
 	"net/http"
 	"os"
 	"os/signal"
 	"time"
 )
-
-type Product struct {
-	gorm.Model
-	Code  string
-	Price uint
-}
 
 func Run(cfg *config.Config) {
 	e := echo.New()

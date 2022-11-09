@@ -3,7 +3,7 @@ package main
 import (
 	"flag"
 	"github.com/fastid/fastid/internal/app"
-	config "github.com/fastid/fastid/internal/config"
+	"github.com/fastid/fastid/internal/config"
 	"log"
 )
 
