@@ -2,7 +2,6 @@ package db
 
 import (
 	"context"
-	"errors"
 	"fmt"
 	"github.com/fastid/fastid/internal/config"
 	"github.com/jmoiron/sqlx"
@@ -40,7 +39,7 @@ func NewDB(cfg *config.Config, driverName string) (DB, error) {
 			cfg.DATABASE.SslMode,
 		)
 	} else {
-		return nil, errors.New(fmt.Sprintf("Unable to load the driver %s", driverName))
+		return nil, fmt.Errorf("Unable to load the driver %s", driverName)
 	}
 
 	db, err := sqlx.Connect(driverName, dsn)
