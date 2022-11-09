@@ -7,7 +7,7 @@ import (
 )
 
 func TestConfig(t *testing.T) {
-	cfg, err := NewConfig("../../configs/config.yml")
+	cfg, err := NewConfig("../../configs/fastid.yml")
 	require.NoError(t, err)
 	assert.Equal(t, cfg.HTTP.Listen, ":8000")
 }

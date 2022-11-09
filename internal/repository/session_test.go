@@ -10,7 +10,7 @@ import (
 )
 
 func TestSession(t *testing.T) {
-	cfg, err := config.NewConfig("../../configs/config.yml")
+	cfg, err := config.NewConfig("../../configs/fastid.yml")
 	if err != nil {
 		t.Fatalf("%s", err.Error())
 	}
