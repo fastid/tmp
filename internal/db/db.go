@@ -1,7 +1,6 @@
 package db
 
 import (
-	"context"
 	"fmt"
 	"github.com/fastid/fastid/internal/config"
 	"github.com/jmoiron/sqlx"
@@ -11,7 +10,6 @@ import (
 )
 
 type DB interface {
-	GetConnectContext(ctx context.Context) (*sqlx.Conn, error)
 	GetConnect() *sqlx.DB
 	Close() error
 }
@@ -57,10 +55,6 @@ func NewDB(cfg *config.Config, driverName string) (DB, error) {
 
 func (d *database) GetConnect() *sqlx.DB {
 	return d.db
-}
-
-func (d *database) GetConnectContext(ctx context.Context) (*sqlx.Conn, error) {
-	return d.db.Connx(ctx)
 }
 
 func (d *database) Close() error {
