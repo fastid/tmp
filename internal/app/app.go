@@ -8,14 +8,28 @@ import (
 	"github.com/fastid/fastid/internal/logger"
 	"github.com/fastid/fastid/internal/repository"
 	"github.com/fastid/fastid/internal/service"
+	"github.com/labstack/echo-contrib/prometheus"
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 	_ "github.com/lib/pq"
 	_ "github.com/mattn/go-sqlite3"
+	"github.com/sirupsen/logrus"
 	"net/http"
 	"os"
 	"os/signal"
+	"strings"
 	"time"
 )
+
+func urlSkipper(c echo.Context) bool {
+	if strings.HasPrefix(c.Path(), "/metrics") {
+		return true
+	}
+	//} else if strings.HasPrefix(c.Path(), "/api/v1/healthcheck/") {
+	//	return true
+	//}
+	return false
+}
 
 func Run(cfg *config.Config) {
 	e := echo.New()
@@ -27,6 +41,27 @@ func Run(cfg *config.Config) {
 	// Logger
 	log := logger.NewLogger(cfg)
 	log.Infoln("Starting the server")
+
+	// Prometheus
+	prom := prometheus.NewPrometheus("fastid", urlSkipper)
+	prom.Use(e)
+
+	// Middleware
+	e.Use(middleware.RequestID())
+	e.Use(middleware.RequestLoggerWithConfig(middleware.RequestLoggerConfig{
+		LogURI:       true,
+		LogStatus:    true,
+		LogRequestID: true,
+		LogValuesFunc: func(c echo.Context, values middleware.RequestLoggerValues) error {
+			log.WithFields(logrus.Fields{
+				"uri":          values.URI,
+				"status":       values.Status,
+				"x-request-id": values.RequestID,
+			}).Info("request")
+
+			return nil
+		},
+	}))
 
 	// DB
 	database, err := db.NewDB(cfg, "postgres")
@@ -60,16 +95,3 @@ func Run(cfg *config.Config) {
 		e.Logger.Fatal(err)
 	}
 }
-
-//dsn := fmt.Sprintf(
-//"postgres://%s:%s@%s:%s/%s?sslmode=%s&application_name=%s&search_path=%s",
-//m.cfg.DATABASE.User,
-//m.cfg.DATABASE.Password,
-//m.cfg.DATABASE.Host,
-//m.cfg.DATABASE.Port,
-//m.cfg.DATABASE.DBName,
-//m.cfg.DATABASE.SslMode,
-//m.cfg.DATABASE.ApplicationName,
-//m.cfg.DATABASE.Scheme,
-//)
-//
