@@ -24,10 +24,9 @@ import (
 func urlSkipper(c echo.Context) bool {
 	if strings.HasPrefix(c.Path(), "/metrics") {
 		return true
+	} else if strings.HasPrefix(c.Path(), "/api/v1/healthcheck/") {
+		return true
 	}
-	//} else if strings.HasPrefix(c.Path(), "/api/v1/healthcheck/") {
-	//	return true
-	//}
 	return false
 }
 
@@ -60,8 +59,8 @@ func Run(cfg *config.Config) {
 			}).Info("request")
 
 			return nil
-		},
-	}))
+		}},
+	))
 
 	// DB
 	database, err := db.NewDB(cfg, "postgres")
