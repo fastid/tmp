@@ -1,34 +1,28 @@
 package main
 
 import (
-	"embed"
 	"flag"
-	"fmt"
 	"github.com/fastid/fastid/internal/app"
 	"github.com/fastid/fastid/internal/config"
-	"log"
+	"github.com/fastid/fastid/internal/migrations"
+	log "github.com/sirupsen/logrus"
 	"os"
 )
 
-var (
-	//go:embed LICENSE
-	dir embed.FS
-)
-
 func main() {
-	//argPathConfig := flag.String("config", "fastid.yml", "a string")
-
 	var pathConfig string
 	var runServer bool
 	var help bool
 	var migrate bool
-	var license bool
+	var up bool
+	var down bool
 
 	flag.StringVar(&pathConfig, "config", "fastid.yml", "The path to the configuration file")
 	flag.BoolVar(&runServer, "run", false, "Starts the FastID server")
 	flag.BoolVar(&help, "help", false, "List available commands")
 	flag.BoolVar(&migrate, "migrate", false, "Performs migration to the database")
-	flag.BoolVar(&license, "license", false, "Show current license")
+	flag.BoolVar(&up, "up", false, "Updating migrations")
+	flag.BoolVar(&down, "down", false, "Downgrade migrations")
 
 	flag.Parse()
 
@@ -44,8 +38,25 @@ func main() {
 
 	if runServer {
 		app.Run(cfg)
-	} else if license {
-		entries, _ := dir.ReadFile("LICENSE")
-		fmt.Println(string(entries))
+	} else if migrate {
+		migration, err := migrations.NewMigration(cfg, "postgres")
+		if err != nil {
+			log.Fatalf("Migration error: %s", err)
+		}
+
+		if up {
+			if err := migration.Upgrade(); err != nil {
+				log.Fatalf("Migrations error: %s", err)
+			}
+		} else if down {
+			if err := migration.Downgrade(); err != nil {
+				log.Fatalf("Migrations error: %s", err)
+			}
+		} else {
+			log.Fatalf("No action passed to perform migration")
+		}
+
+	} else {
+		flag.PrintDefaults()
 	}
 }

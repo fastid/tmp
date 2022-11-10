@@ -37,3 +37,7 @@ test:
 cover:
 	go test ./... -coverprofile=coverage.out
 	go tool cover -html=coverage.out -o coverage.html
+
+.PHONY: migrate_up
+migrate_up:
+	go run cmd/fastid

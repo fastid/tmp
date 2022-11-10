@@ -28,6 +28,7 @@ type (
 		Port            string `env-default:"5432" yaml:"port" env:"DATABASE_PORT"`
 		SslMode         string `env-default:"disable" yaml:"sslmode" env:"DATABASE_SSLMODE"`
 		ApplicationName string `env-default:"FastID" yaml:"application_name" env:"DATABASE_APPLICATION_NAME"`
+		Scheme          string `env-default:"public" yaml:"scheme" env:"DATABASE_SCHEME"`
 		ConnectTimeout  string `env-default:"10" yaml:"connect_timeout" env:"DATABASE_CONNECTION_TIMEOUT"`
 		MaxOpenConns    int    `env-default:"20" yaml:"max_open_conns" env:"DATABASE_MAX_OPEN_CONNS"`
 		MaxIdleConns    int    `env-default:"5" yaml:"max_idle_conns" env:"DATABASE_MAX_IDLE_CONNS"`

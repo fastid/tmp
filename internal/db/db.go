@@ -27,7 +27,7 @@ func NewDB(cfg *config.Config, driverName string) (DB, error) {
 		dsn = ":memory:"
 	} else if driverName == "postgres" {
 		dsn = fmt.Sprintf(
-			"host=%s port=%s user=%s password=%s dbname=%s application_name=%s sslmode=%s",
+			"host=%s port=%s user=%s password=%s dbname=%s application_name=%s sslmode=%s search_path=%s",
 			cfg.DATABASE.Host,
 			cfg.DATABASE.Port,
 			cfg.DATABASE.User,
@@ -35,6 +35,7 @@ func NewDB(cfg *config.Config, driverName string) (DB, error) {
 			cfg.DATABASE.DBName,
 			cfg.DATABASE.ApplicationName,
 			cfg.DATABASE.SslMode,
+			cfg.DATABASE.Scheme,
 		)
 	} else {
 		return nil, fmt.Errorf("Unable to load the driver %s", driverName)

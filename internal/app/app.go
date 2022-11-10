@@ -60,3 +60,16 @@ func Run(cfg *config.Config) {
 		e.Logger.Fatal(err)
 	}
 }
+
+//dsn := fmt.Sprintf(
+//"postgres://%s:%s@%s:%s/%s?sslmode=%s&application_name=%s&search_path=%s",
+//m.cfg.DATABASE.User,
+//m.cfg.DATABASE.Password,
+//m.cfg.DATABASE.Host,
+//m.cfg.DATABASE.Port,
+//m.cfg.DATABASE.DBName,
+//m.cfg.DATABASE.SslMode,
+//m.cfg.DATABASE.ApplicationName,
+//m.cfg.DATABASE.Scheme,
+//)
+//
