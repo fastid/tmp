@@ -4,6 +4,7 @@ import (
 	"context"
 	"github.com/fastid/fastid/internal/config"
 	"github.com/fastid/fastid/internal/repository"
+	log "github.com/sirupsen/logrus"
 )
 
 type ExampleService interface {
@@ -11,22 +12,21 @@ type ExampleService interface {
 }
 
 type exampleService struct {
-	cfg                *config.Config
-	sessionsRepository repository.SessionsRepository
-	usersRepository    repository.UsersRepository
+	cfg        *config.Config
+	log        *log.Logger
+	repository repository.Repository
 }
 
-func NewExampleService(cfg *config.Config, sessionsRepository repository.SessionsRepository, usersRepository repository.UsersRepository) ExampleService {
-
+func NewExampleService(cfg *config.Config, log *log.Logger, repository repository.Repository) ExampleService {
 	return &exampleService{
-		cfg:                cfg,
-		sessionsRepository: sessionsRepository,
-		usersRepository:    usersRepository,
+		cfg:        cfg,
+		log:        log,
+		repository: repository,
 	}
 }
 
 func (e *exampleService) GetByID(ctx context.Context) (string, error) {
-	res, err := e.sessionsRepository.GetByID(ctx)
+	res, err := e.repository.Sessions().GetByID(ctx)
 	if err != nil {
 		return "", err
 	}

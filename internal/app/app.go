@@ -68,16 +68,15 @@ func Run(cfg *config.Config) {
 		log.Fatalln(err.Error())
 	}
 
-	// Storage
-	usersRepository := repository.NewUsersRepository(cfg, log, database)
-	sessionsRepository := repository.NewSessionsRepository(cfg, log, database)
+	// Repository
+	repo := repository.NewRepository(cfg, log, database)
 
 	// Service
-	exampleService := service.NewExampleService(cfg, sessionsRepository, usersRepository)
+	srv := service.NewService(cfg, log, repo)
 
 	// Handlers
-	healthCheckHandler := handlers.NewHealthCheckHandler(exampleService)
-	healthCheckHandler.Register(group)
+	handler := handlers.NewHandlers(cfg, log, srv)
+	handler.Register(group)
 
 	go func() {
 		if err := e.Start(cfg.HTTP.Listen); err != nil && err != http.ErrServerClosed {

@@ -38,6 +38,7 @@ func main() {
 
 	if runServer {
 		app.Run(cfg)
+
 	} else if migrate {
 		migration, err := migrations.NewMigration(cfg, "postgres")
 		if err != nil {

@@ -1,37 +1,34 @@
 package handlers
 
 import (
+	"github.com/fastid/fastid/internal/config"
 	"github.com/fastid/fastid/internal/service"
 	"github.com/labstack/echo/v4"
+	log "github.com/sirupsen/logrus"
 	"net/http"
 )
 
 type HealthCheckHandler interface {
 	Register(router *echo.Group)
-	get() echo.HandlerFunc
+	Get() echo.HandlerFunc
 }
 
 type healthCheckHandler struct {
-	exampleService service.ExampleService
+	cfg *config.Config
+	log *log.Logger
+	srv service.Service
 }
 
-func NewHealthCheckHandler(exampleService service.ExampleService) *healthCheckHandler {
-	return &healthCheckHandler{exampleService: exampleService}
+func NewHealthCheckHandler(cfg *config.Config, log *log.Logger, srv service.Service) HealthCheckHandler {
+	return &healthCheckHandler{cfg: cfg, log: log, srv: srv}
 }
 
 func (h *healthCheckHandler) Register(router *echo.Group) {
-	router.Add("GET", "/healthcheck/", h.get())
+	router.Add("GET", "/healthcheck/", h.Get())
 }
 
-func (h *healthCheckHandler) get() echo.HandlerFunc {
+func (h *healthCheckHandler) Get() echo.HandlerFunc {
 	return func(e echo.Context) error {
-		res, err := h.exampleService.GetByID(e.Request().Context())
-		if err != nil {
-			return err
-		}
-		return e.String(http.StatusOK, res)
-
-		//e.Request().Context()
-		//return e.JSON(http.StatusOK, make(map[string]string))
+		return e.JSON(http.StatusOK, make(map[string]string))
 	}
 }
