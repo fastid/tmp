@@ -10,11 +10,11 @@ import (
 )
 
 func TestSession(t *testing.T) {
-	cfg, err := config.NewConfig("../../configs/fastid.yml")
+	cfg, err := config.New("../../configs/fastid.yml")
 	if err != nil {
 		t.Fatalf("%s", err.Error())
 	}
-	log := logger.NewLogger(cfg)
+	log := logger.New(cfg)
 
 	database, err := db.NewDB(cfg, "sqlite3")
 	if err != nil {

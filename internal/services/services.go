@@ -16,7 +16,7 @@ type services struct {
 	exampleService ExampleService
 }
 
-func NewService(cfg *config.Config, log *log.Logger, repositories repositories.Repositories) Services {
+func New(cfg *config.Config, log *log.Logger, repositories repositories.Repositories) Services {
 	exampleService := NewExampleService(cfg, log, repositories)
 	return &services{cfg: cfg, log: log, exampleService: exampleService}
 }

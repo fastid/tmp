@@ -7,10 +7,10 @@ import (
 )
 
 func TestMigrations(t *testing.T) {
-	cfg, err := config.NewConfig("../../configs/fastid.yml")
+	cfg, err := config.New("../../configs/fastid.yml")
 	require.NoError(t, err)
 
-	migration, err := NewMigration(cfg, "sqlite3")
+	migration, err := New(cfg, "sqlite3")
 	require.NoError(t, err)
 
 	err = migration.Upgrade()

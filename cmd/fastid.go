@@ -31,7 +31,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	cfg, err := config.NewConfig(pathConfig)
+	cfg, err := config.New(pathConfig)
 	if err != nil {
 		log.Fatalf("Config error: %s", err)
 	}
@@ -40,7 +40,7 @@ func main() {
 		app.Run(cfg)
 
 	} else if migrate {
-		migration, err := migrations.NewMigration(cfg, "postgres")
+		migration, err := migrations.New(cfg, "postgres")
 		if err != nil {
 			log.Fatalf("Migration error: %s", err)
 		}

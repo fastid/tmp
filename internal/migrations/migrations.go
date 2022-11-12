@@ -13,10 +13,6 @@ import (
 	"github.com/golang-migrate/migrate/v4/source/iofs"
 )
 
-////go:generate mockgen -source=migrations.go -destination=mocks/migrations.go
-
-//go:generate mockgen -destination mocked.go github.com/golang-migrate/migrate/v4/source/iofs New
-
 //go:embed sql/*.sql
 var schemaFs embed.FS
 
@@ -31,7 +27,7 @@ type migration struct {
 	driver *database.Driver
 }
 
-func NewMigration(cfg *config.Config, driverName string) (Migration, error) {
+func New(cfg *config.Config, driverName string) (Migration, error) {
 	var dsn string
 
 	if driverName == "sqlite3" {

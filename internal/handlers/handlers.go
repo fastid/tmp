@@ -19,7 +19,7 @@ type handlers struct {
 	healthCheck HealthCheckHandler
 }
 
-func NewHandlers(cfg *config.Config, log *log.Logger, srv services.Services) Handlers {
+func New(cfg *config.Config, log *log.Logger, srv services.Services) Handlers {
 	healthCheck := NewHealthCheckHandler(cfg, log, srv)
 	return &handlers{cfg: cfg, log: log, srv: srv, healthCheck: healthCheck}
 }

@@ -14,23 +14,23 @@ import (
 )
 
 func TestHealthCheck(t *testing.T) {
-	cfg, _ := config.NewConfig("../../configs/fastid.yml")
+	cfg, _ := config.New("../../configs/fastid.yml")
 
 	// Logger
-	log := logger.NewLogger(cfg)
+	log := logger.New(cfg)
 	log.Infoln("Starting the server")
 
 	database, err := db.NewDB(cfg, "sqlite3")
 	require.NoError(t, err)
 
 	// Storage
-	repos := repositories.NewRepository(cfg, log, database)
+	repos := repositories.New(cfg, log, database)
 
 	// Service
-	srv := services.NewService(cfg, log, repos)
+	srv := services.New(cfg, log, repos)
 
 	// Handlers
-	handler := NewHandlers(cfg, log, srv)
+	handler := New(cfg, log, srv)
 
 	e := echo.New()
 	group := e.Group("/api/v1")

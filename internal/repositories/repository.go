@@ -19,7 +19,7 @@ type repositories struct {
 	sessionsRepository SessionsRepository
 }
 
-func NewRepository(cfg *config.Config, log *log.Logger, db db.DB) Repositories {
+func New(cfg *config.Config, log *log.Logger, db db.DB) Repositories {
 	usersRepository := NewUsersRepository(cfg, log, db)
 	sessionsRepository := NewSessionsRepository(cfg, log, db)
 

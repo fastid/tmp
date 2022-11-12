@@ -11,7 +11,7 @@ type Version struct {
 }
 
 func TestDBSqlite3(t *testing.T) {
-	cfg, _ := config.NewConfig("../../configs/fastid.yml")
+	cfg, _ := config.New("../../configs/fastid.yml")
 	db, _ := NewDB(cfg, "sqlite3")
 	sql := db.GetConnect()
 
@@ -25,7 +25,7 @@ func TestDBSqlite3(t *testing.T) {
 }
 
 func TestInvalid(t *testing.T) {
-	cfg, _ := config.NewConfig("../../configs/fastid.yml")
+	cfg, _ := config.New("../../configs/fastid.yml")
 
 	t.Run("FakeDriver", func(t *testing.T) {
 		_, err := NewDB(cfg, "FakeDriver")

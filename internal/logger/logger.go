@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func NewLogger(cfg *config.Config) *log.Logger {
+func New(cfg *config.Config) *log.Logger {
 	var logger = log.New()
 	logger.SetFormatter(&log.JSONFormatter{})
 	logger.SetOutput(os.Stdout)

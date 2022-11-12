@@ -38,7 +38,7 @@ func Run(cfg *config.Config) {
 	group := e.Group("/api/v1")
 
 	// Logger
-	log := logger.NewLogger(cfg)
+	log := logger.New(cfg)
 	log.Infoln("Starting the server")
 
 	// Prometheus
@@ -69,13 +69,13 @@ func Run(cfg *config.Config) {
 	}
 
 	// Repository
-	repo := repositories.NewRepository(cfg, log, database)
+	repo := repositories.New(cfg, log, database)
 
 	// Service
-	srv := services.NewService(cfg, log, repo)
+	srv := services.New(cfg, log, repo)
 
 	// Handlers
-	handler := handlers.NewHandlers(cfg, log, srv)
+	handler := handlers.New(cfg, log, srv)
 	handler.Register(group)
 
 	go func() {
