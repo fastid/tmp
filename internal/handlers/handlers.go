@@ -2,7 +2,7 @@ package handlers
 
 import (
 	"github.com/fastid/fastid/internal/config"
-	"github.com/fastid/fastid/internal/service"
+	"github.com/fastid/fastid/internal/services"
 	"github.com/labstack/echo/v4"
 	log "github.com/sirupsen/logrus"
 )
@@ -15,11 +15,11 @@ type Handlers interface {
 type handlers struct {
 	cfg         *config.Config
 	log         *log.Logger
-	srv         service.Service
+	srv         services.Services
 	healthCheck HealthCheckHandler
 }
 
-func NewHandlers(cfg *config.Config, log *log.Logger, srv service.Service) Handlers {
+func NewHandlers(cfg *config.Config, log *log.Logger, srv services.Services) Handlers {
 	healthCheck := NewHealthCheckHandler(cfg, log, srv)
 	return &handlers{cfg: cfg, log: log, srv: srv, healthCheck: healthCheck}
 }

@@ -4,8 +4,8 @@ import (
 	"github.com/fastid/fastid/internal/config"
 	"github.com/fastid/fastid/internal/db"
 	"github.com/fastid/fastid/internal/logger"
-	"github.com/fastid/fastid/internal/repository"
-	"github.com/fastid/fastid/internal/service"
+	"github.com/fastid/fastid/internal/repositories"
+	"github.com/fastid/fastid/internal/services"
 	"github.com/labstack/echo/v4"
 	"github.com/stretchr/testify/require"
 	"net/http"
@@ -24,10 +24,10 @@ func TestHealthCheck(t *testing.T) {
 	require.NoError(t, err)
 
 	// Storage
-	repo := repository.NewRepository(cfg, log, database)
+	repos := repositories.NewRepository(cfg, log, database)
 
 	// Service
-	srv := service.NewService(cfg, log, repo)
+	srv := services.NewService(cfg, log, repos)
 
 	// Handlers
 	handler := NewHandlers(cfg, log, srv)

@@ -1,4 +1,4 @@
-package repository
+package repositories
 
 import (
 	"github.com/fastid/fastid/internal/config"
@@ -6,12 +6,12 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-type Repository interface {
+type Repositories interface {
 	Sessions() SessionsRepository
 	Users() UsersRepository
 }
 
-type repository struct {
+type repositories struct {
 	cfg                *config.Config
 	log                *log.Logger
 	db                 db.DB
@@ -19,11 +19,11 @@ type repository struct {
 	sessionsRepository SessionsRepository
 }
 
-func NewRepository(cfg *config.Config, log *log.Logger, db db.DB) Repository {
+func NewRepository(cfg *config.Config, log *log.Logger, db db.DB) Repositories {
 	usersRepository := NewUsersRepository(cfg, log, db)
 	sessionsRepository := NewSessionsRepository(cfg, log, db)
 
-	return &repository{
+	return &repositories{
 		cfg:                cfg,
 		log:                log,
 		db:                 db,
@@ -32,10 +32,10 @@ func NewRepository(cfg *config.Config, log *log.Logger, db db.DB) Repository {
 	}
 }
 
-func (r *repository) Sessions() SessionsRepository {
+func (r *repositories) Sessions() SessionsRepository {
 	return r.sessionsRepository
 }
 
-func (r *repository) Users() UsersRepository {
+func (r *repositories) Users() UsersRepository {
 	return r.usersRepository
 }

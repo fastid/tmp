@@ -6,8 +6,8 @@ import (
 	"github.com/fastid/fastid/internal/db"
 	"github.com/fastid/fastid/internal/handlers"
 	"github.com/fastid/fastid/internal/logger"
-	"github.com/fastid/fastid/internal/repository"
-	"github.com/fastid/fastid/internal/service"
+	"github.com/fastid/fastid/internal/repositories"
+	"github.com/fastid/fastid/internal/services"
 	"github.com/labstack/echo-contrib/prometheus"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -69,10 +69,10 @@ func Run(cfg *config.Config) {
 	}
 
 	// Repository
-	repo := repository.NewRepository(cfg, log, database)
+	repo := repositories.NewRepository(cfg, log, database)
 
 	// Service
-	srv := service.NewService(cfg, log, repo)
+	srv := services.NewService(cfg, log, repo)
 
 	// Handlers
 	handler := handlers.NewHandlers(cfg, log, srv)
