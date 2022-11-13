@@ -45,5 +45,5 @@ func TestMigrationFakeDriver(t *testing.T) {
 
 	_, err = New(cfg, "fake")
 	require.Error(t, err)
-
+	require.Equal(t, err.Error(), "Unable to load the driver fake")
 }
