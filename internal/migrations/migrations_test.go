@@ -38,3 +38,12 @@ func TestMigrationsPostgres(t *testing.T) {
 	err = migration.Downgrade()
 	require.NoError(t, err)
 }
+
+func TestMigrationFakeDriver(t *testing.T) {
+	cfg, err := config.New("../../configs/fastid.yml")
+	require.NoError(t, err)
+
+	_, err = New(cfg, "fake")
+	require.Error(t, err)
+
+}
