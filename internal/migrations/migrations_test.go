@@ -29,7 +29,12 @@ func TestMigrationsPostgres(t *testing.T) {
 		t.Skip("Skipping testing in not CI environment")
 	}
 
-	_, err = New(cfg, "postgres")
+	migration, err := New(cfg, "postgres")
 	require.NoError(t, err)
 
+	err = migration.Upgrade()
+	require.NoError(t, err)
+
+	err = migration.Downgrade()
+	require.NoError(t, err)
 }
