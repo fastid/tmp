@@ -27,6 +27,20 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     needs: ['golangci']
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_USER: user
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: fastid
+          POSTGRES_HOST: localhost
+          POSTGRES_PORT: 5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
       - uses: actions/checkout@v3

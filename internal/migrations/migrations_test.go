@@ -3,6 +3,7 @@ package migrations
 import (
 	"github.com/fastid/fastid/internal/config"
 	"github.com/stretchr/testify/require"
+	"os"
 	"testing"
 )
 
@@ -18,4 +19,17 @@ func TestMigrations(t *testing.T) {
 
 	err = migration.Downgrade()
 	require.NoError(t, err)
+}
+
+func TestMigrationsPostgres(t *testing.T) {
+	cfg, err := config.New("../../configs/fastid.yml")
+	require.NoError(t, err)
+
+	if os.Getenv("CI") == "" {
+		t.Skip("Skipping testing in not CI environment")
+	}
+
+	_, err = New(cfg, "postgres")
+	require.NoError(t, err)
+
 }
