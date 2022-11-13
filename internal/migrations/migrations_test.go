@@ -8,10 +8,7 @@ import (
 )
 
 func TestMigrations(t *testing.T) {
-	err := os.Chdir("../../")
-	require.NoError(t, err)
-
-	cfg, err := config.New("configs/fastid.yml")
+	cfg, err := config.New("../../configs/fastid.yml")
 	require.NoError(t, err)
 
 	migration, err := New(cfg, "sqlite3")
@@ -25,10 +22,7 @@ func TestMigrations(t *testing.T) {
 }
 
 func TestMigrationsPostgres(t *testing.T) {
-	err := os.Chdir("../../")
-	require.NoError(t, err)
-
-	cfg, err := config.New("configs/fastid.yml")
+	cfg, err := config.New("../../configs/fastid.yml")
 	require.NoError(t, err)
 
 	if os.Getenv("CI") == "" {
