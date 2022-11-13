@@ -63,17 +63,6 @@ func Run(cfg *config.Config) {
 		}},
 	))
 
-	//fsys, err := fs.Sub(embededFiles, "index.html")
-	//if err != nil {
-	//	panic(err)
-	//}
-	//
-	//assetHandler := http.FileServer(http.FS(fsys))
-	//e.GET("/api/", echo.WrapHandler(http.StripPrefix("index.html", assetHandler)))
-	//
-
-	swagger.New(e)
-
 	// DB
 	database, err := db.NewDB(cfg, "postgres")
 	if err != nil {
@@ -85,6 +74,10 @@ func Run(cfg *config.Config) {
 
 	// Service
 	srv := services.New(cfg, log, repo)
+
+	// Swagger
+	sw := swagger.New(cfg, log)
+	sw.Register(e)
 
 	// Handlers
 	handler := handlers.New(cfg, log, srv)

@@ -24,11 +24,3 @@ func New(cfg *config.Config, log *log.Logger, repositories repositories.Reposito
 func (s *services) Example() ExampleService {
 	return s.exampleService
 }
-
-//func (r *repositories) Sessions() SessionsRepository {
-//	return r.sessionsRepository
-//}
-//
-//func (r *repositories) Users() UsersRepository {
-//	return r.usersRepository
-//}
