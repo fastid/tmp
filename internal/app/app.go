@@ -8,6 +8,7 @@ import (
 	"github.com/fastid/fastid/internal/logger"
 	"github.com/fastid/fastid/internal/repositories"
 	"github.com/fastid/fastid/internal/services"
+	"github.com/fastid/fastid/internal/swagger"
 	"github.com/labstack/echo-contrib/prometheus"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -61,6 +62,17 @@ func Run(cfg *config.Config) {
 			return nil
 		}},
 	))
+
+	//fsys, err := fs.Sub(embededFiles, "index.html")
+	//if err != nil {
+	//	panic(err)
+	//}
+	//
+	//assetHandler := http.FileServer(http.FS(fsys))
+	//e.GET("/api/", echo.WrapHandler(http.StripPrefix("index.html", assetHandler)))
+	//
+
+	swagger.New(e)
 
 	// DB
 	database, err := db.NewDB(cfg, "postgres")

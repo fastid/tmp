@@ -1,0 +1,15 @@
+openapi: "3.0.2"
+info:
+  title: FastID
+  version: 0.0.1
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+
+paths:
+  /:
+    get:
+      summary: List API versions
+      responses:
+        '200':
+          description: 200 response
