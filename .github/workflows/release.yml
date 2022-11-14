@@ -8,7 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        # build and publish in parallel: linux/386, linux/amd64, linux/arm64, windows/386, windows/amd64, darwin/amd64, darwin/arm64
         goos: [linux, windows, darwin]
         goarch: [amd64, arm64]
     steps:
@@ -20,4 +19,4 @@ jobs:
           goarch: ${{ matrix.goarch }}
           project_path: "./cmd"
           binary_name: "fastid"
-          extra_files: README.md configs/fastid.yml
+          extra_files: README.md LICENSE configs/fastid.yml

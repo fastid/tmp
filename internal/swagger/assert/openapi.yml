@@ -3,8 +3,8 @@ info:
   title: FastID
   version: 0.0.1
   license:
-    name: Apache 2.0
-    url: https://www.apache.org/licenses/LICENSE-2.0
+    name: MIT License
+    url: https://choosealicense.com/licenses/mit/
 
 paths:
   /:
