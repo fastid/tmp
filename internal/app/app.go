@@ -42,6 +42,10 @@ func Run(cfg *config.Config) {
 	log := logger.New(cfg)
 	log.Infoln("Starting the server")
 
+	if cfg.DATABASE.DriverName == "sqlite3" {
+		log.Warningln("Warning! Your server is running with sqlite, the data will be deleted after reboot")
+	}
+
 	// Prometheus
 	prom := prometheus.NewPrometheus("fastid", urlSkipper)
 	prom.Use(e)
@@ -64,7 +68,7 @@ func Run(cfg *config.Config) {
 	))
 
 	// DB
-	database, err := db.NewDB(cfg, "postgres")
+	database, err := db.NewDB(cfg, cfg.DATABASE.DriverName)
 	if err != nil {
 		log.Fatalln(err.Error())
 	}
