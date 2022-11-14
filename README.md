@@ -1,2 +1,2 @@
 # fastid
-Authorization and authentication servic
+Authorization and authentication service
