@@ -7,7 +7,7 @@ builds:
 release:
   github:
     owner: user
-    name: repo
+#    name: repo
 
   draft: true
   replace_existing_draft: true
