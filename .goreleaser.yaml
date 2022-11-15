@@ -1,6 +1,7 @@
 builds:
   -
     main: ./cmd/
+    id: "fastid"
     goos:
       - linux
       - darwin
@@ -17,4 +18,5 @@ release:
   prerelease: auto
   mode: append
   name_template: "{{.ProjectName}} v{{.Version}}"
-
+  extra_files:
+    - glob: ./configs/fastid.yml
