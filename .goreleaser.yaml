@@ -9,7 +9,7 @@ builds:
 
 release:
   github:
-    owner: user
+    owner: kostyaten
     name: fastid
 
   draft: true
