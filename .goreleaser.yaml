@@ -7,7 +7,7 @@ builds:
 release:
   github:
     owner: user
-    name: repo
+    name: fastid
 
   draft: true
   replace_existing_draft: true
@@ -23,6 +23,7 @@ release:
 
   footer: |
     ## Thanks!
+
     Those were the changes on {{ .Tag }}!
 
   name_template: "{{.ProjectName}}-v{{.Version}} {{.Env.USER}}"
