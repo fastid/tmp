@@ -1,11 +1,12 @@
 builds:
-  - main: ./cmd/
-#  - goos:
-#      - linux
-#      - darwin
-#  - goarch:
-#      - amd64
-#      - arm64
+  -
+    main: ./cmd/
+    goos:
+      - linux
+      - darwin
+    goarch:
+      - amd64
+      - arm64
 
 release:
   github:
@@ -15,6 +16,5 @@ release:
   target_commitish: '{{ .Commit }}'
   prerelease: auto
   mode: append
-
   name_template: "{{.ProjectName}} v{{.Version}}"
 
