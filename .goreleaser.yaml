@@ -3,6 +3,8 @@ builds:
     main: ./cmd/
     id: "fastid"
     binary: fastid
+    env:
+      - CGO_ENABLED=0
     goos:
       - linux
       - darwin
@@ -46,4 +48,4 @@ release:
   target_commitish: '{{ .Commit }}'
   prerelease: auto
   mode: append
-  name_template: "{{.ProjectName}} v{{.Version}}"
+  name_template: "v{{.Version}}"
