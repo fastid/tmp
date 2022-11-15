@@ -1,6 +1,10 @@
+project_name: fastid
+before:
+  hooks:
+    - go mod tidy
+
 builds:
-  -
-    main: ./cmd/
+  - main: ./cmd/
     id: "fastid"
     binary: fastid
     env:
@@ -11,7 +15,6 @@ builds:
     goarch:
       - amd64
       - arm64
-
 archives:
   - name_template: "{{.ProjectName}}-{{.Version}}-{{.Os}}-{{.Arch}}"
     files:
