@@ -2,12 +2,26 @@ builds:
   -
     main: ./cmd/
     id: "fastid"
+    binary: fastid
     goos:
       - linux
       - darwin
     goarch:
       - amd64
       - arm64
+
+archives:
+  - name_template: "{{.ProjectName}}_{{.Tag}}_{{.Os}}_{{.Arch}}"
+    replacements:
+      386: i386
+      amd64: x86_64
+      darwin: macos
+    format_overrides:
+      - goos: windows
+        format: zip
+    files:
+      - LICENSE
+      - README.md
 
 release:
   github:
