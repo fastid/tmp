@@ -53,3 +53,17 @@ release:
   prerelease: auto
   mode: append
   name_template: "v{{.Version}}"
+
+dockers:
+  # https://goreleaser.com/customization/docker/
+  - use: buildx
+    goos: linux
+    goarch: amd64
+    image_templates:
+      - "fastid/fastid:latest"
+    build_flag_templates:
+      - "--platform=linux/amd64"
+      - "--label=org.opencontainers.image.created={{.Date}}"
+      - "--label=org.opencontainers.image.title={{.ProjectName}}"
+      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+      - "--label=org.opencontainers.image.version={{.Version}}"
