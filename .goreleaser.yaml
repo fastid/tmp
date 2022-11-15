@@ -1,2 +1,29 @@
 builds:
   - main: ./cmd/
+  - goarch:
+      - amd64
+      - arm64
+
+release:
+  github:
+    owner: user
+    name: repo
+  draft: true
+  replace_existing_draft: true
+  target_commitish: '{{ .Commit }}'
+  discussion_category_name: General
+  prerelease: auto
+  mode: append
+
+  header: |
+    ## Some title ({{ .Date }})
+
+    Welcome to this new release!
+
+  footer: |
+    ## Thanks!
+
+    Those were the changes on {{ .Tag }}!
+
+  name_template: "{{.ProjectName}}-v{{.Version}} {{.Env.USER}}"
+
