@@ -10,7 +10,7 @@ builds:
 release:
   github:
     owner: fastid
-    name: fastid
+    name: tmp
 
   draft: true
   replace_existing_draft: true
