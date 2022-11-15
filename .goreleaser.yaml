@@ -19,15 +19,5 @@ release:
   prerelease: auto
   mode: append
 
-  header: |
-    ## Some title ({{ .Date }})
-
-    Welcome to this new release!
-
-  footer: |
-    ## Thanks!
-
-    Those were the changes on {{ .Tag }}!
-
-  name_template: "{{.ProjectName}}-v{{.Version}} {{.Env.USER}}"
+  name_template: "{{.ProjectName}} v{{.Version}}"
 
