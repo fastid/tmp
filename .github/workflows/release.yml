@@ -1,13 +1,8 @@
-on:
-  release:
-    types: [created]
-
 name: Goreleaser
 
 on:
-  push:
-    branches:
-      - main
+  release:
+    types: [created]
 
 permissions:
   contents: write
