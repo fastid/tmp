@@ -23,7 +23,6 @@ release:
 
   footer: |
     ## Thanks!
-
     Those were the changes on {{ .Tag }}!
 
   name_template: "{{.ProjectName}}-v{{.Version}} {{.Env.USER}}"
