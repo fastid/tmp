@@ -1,11 +1,11 @@
 builds:
   - main: ./cmd/
-  - goos:
-      - linux
-      - darwin
-  - goarch:
-      - amd64
-      - arm64
+#  - goos:
+#      - linux
+#      - darwin
+#  - goarch:
+#      - amd64
+#      - arm64
 
 release:
   github:
