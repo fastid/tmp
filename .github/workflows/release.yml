@@ -2,7 +2,7 @@
 #  release:
 #    types: [created]
 
-name: goreleaser
+name: Goreleaser
 
 on:
   push:

@@ -1,13 +1,13 @@
 builds:
   - main: ./cmd/
-  - goarch:
-      - amd64
-      - arm64
+#  - goarch:
+#      - amd64
+#      - arm64
 
 release:
   github:
     owner: user
-#    name: repo
+    name: repo
 
   draft: true
   replace_existing_draft: true
