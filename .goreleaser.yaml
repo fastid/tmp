@@ -8,6 +8,7 @@ release:
   github:
     owner: user
     name: repo
+
   draft: true
   replace_existing_draft: true
   target_commitish: '{{ .Commit }}'
