@@ -11,11 +11,12 @@ builds:
       - arm64
 
 archives:
-  - name_template: "{{.ProjectName}}_{{.Tag}}_{{.Os}}_{{.Arch}}"
+  - name_template: "{{.ProjectName}}-{{.Version}}-{{.Os}}-{{.Arch}}"
     files:
       - LICENSE
       - README.md
-      - ./configs/fastid.yml
+      - src: './configs/fastid.yml'
+        dst: 'fastid.yml'
 
 release:
   github:
@@ -26,5 +27,3 @@ release:
   prerelease: auto
   mode: append
   name_template: "{{.ProjectName}} v{{.Version}}"
-  extra_files:
-    - glob: ./configs/fastid.yml
