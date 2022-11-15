@@ -12,8 +12,8 @@ release:
     owner: fastid
     name: tmp
 
-  draft: true
-  replace_existing_draft: true
+  draft: false
+  replace_existing_draft: false
   target_commitish: '{{ .Commit }}'
   discussion_category_name: General
   prerelease: auto
