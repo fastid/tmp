@@ -19,6 +19,7 @@ archives:
       - README.md
       - src: './configs/fastid.yml'
         dst: 'fastid.yml'
+        strip_parent: true
 
 checksum:
   name_template: "{{ .ProjectName }}-checksums.txt"
