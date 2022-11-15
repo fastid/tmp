@@ -18,6 +18,10 @@ archives:
       - src: './configs/fastid.yml'
         dst: 'fastid.yml'
 
+checksum:
+  name_template: "{{ .ProjectName }}-checksums.txt"
+  algorithm: sha256
+
 release:
   github:
     owner: fastid
