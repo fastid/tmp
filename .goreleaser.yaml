@@ -103,7 +103,7 @@ dockers:
     image_templates:
       - "fastid/{{ .ProjectName }}:{{ .Version }}-darwin-arm64v8"
     build_flag_templates:
-      - "--platform=darwin/amd64/v8"
+      - "--platform=darwin/arm64/v8"
       - "--label=org.opencontainers.image.created={{.Date}}"
       - "--label=org.opencontainers.image.title={{.ProjectName}}"
       - "--label=org.opencontainers.image.revision={{.FullCommit}}"
