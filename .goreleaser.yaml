@@ -63,7 +63,7 @@ dockers:
     goos: darwin
     goarch: arm64
     image_templates:
-      - "fastid/Dockerfile"
+      - "fastid/tmp:latest"
     build_flag_templates:
       - "--platform=darwin/arm64"
       - "--label=org.opencontainers.image.created={{.Date}}"
