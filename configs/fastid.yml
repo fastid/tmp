@@ -7,4 +7,4 @@ http:
   listen: ':8000'
 
 database:
-  driver_name: 'sqlite3'
+  driver_name: 'sqlite'

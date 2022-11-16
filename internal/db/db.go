@@ -1,11 +1,13 @@
 package db
 
+//_ "github.com/mattn/go-sqlite3"
+
 import (
 	"fmt"
 	"github.com/fastid/fastid/internal/config"
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
-	_ "github.com/mattn/go-sqlite3"
+	_ "modernc.org/sqlite"
 	"time"
 )
 
@@ -23,7 +25,7 @@ func NewDB(cfg *config.Config, driverName string) (DB, error) {
 
 	var dsn string
 
-	if driverName == "sqlite3" {
+	if driverName == "sqlite" {
 		dsn = ":memory:"
 	} else if driverName == "postgres" {
 		dsn = fmt.Sprintf(
