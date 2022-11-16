@@ -15,8 +15,7 @@ builds:
     goarch:
       - amd64
       - arm64
-    ldflags:
-      - "-linkmode external -extldflags '-static' -s -w"
+    ldflags: "-s -w -X main.revision={{.Tag}}-{{.ShortCommit}}-{{.CommitDate}}"
 
 archives:
   - name_template: "{{.ProjectName}}-{{.Version}}-{{.Os}}-{{.Arch}}"
