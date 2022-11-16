@@ -16,7 +16,7 @@ builds:
       - amd64
       - arm64
     ldflags:
-      - "-s -w -X FastID.Version={{.Version}}"
+      - "-s -w -X main.Version={{.Version}}"
 
 archives:
   - name_template: "{{.ProjectName}}-{{.Version}}-{{.Os}}-{{.Arch}}"
@@ -50,7 +50,7 @@ changelog:
 release:
   github:
     owner: fastid
-    name: tmp
+    name: Dockerfile
 
   target_commitish: '{{ .Commit }}'
   prerelease: auto
@@ -60,12 +60,12 @@ release:
 dockers:
   # https://goreleaser.com/customization/docker/
   - use: buildx
-    goos: linux
-    goarch: amd64
+    goos: darwin
+    goarch: arm64
     image_templates:
-      - "fastid/tmp:latest"
+      - "fastid/Dockerfile:latest"
     build_flag_templates:
-      - "--platform=linux/amd64"
+      - "--platform=darwin/arm64"
       - "--label=org.opencontainers.image.created={{.Date}}"
       - "--label=org.opencontainers.image.title={{.ProjectName}}"
       - "--label=org.opencontainers.image.revision={{.FullCommit}}"
