@@ -71,6 +71,7 @@ dockers:
       - "--label=org.opencontainers.image.title={{.ProjectName}}"
       - "--label=org.opencontainers.image.revision={{.FullCommit}}"
       - "--label=org.opencontainers.image.version={{.Version}}"
+
   - use: buildx
     goos: linux
     goarch: arm64
@@ -84,6 +85,34 @@ dockers:
       - "--label=org.opencontainers.image.title={{.ProjectName}}"
       - "--label=org.opencontainers.image.revision={{.FullCommit}}"
       - "--label=org.opencontainers.image.version={{.Version}}"
+
+  - use: buildx
+    goos: darwin
+    goarch: amd64
+    image_templates:
+      - "fastid/{{ .ProjectName }}:{{ .Version }}-amd64"
+      - "fastid/{{ .ProjectName }}:latest-amd64"
+    build_flag_templates:
+      - "--platform=darwin/amd64"
+      - "--label=org.opencontainers.image.created={{.Date}}"
+      - "--label=org.opencontainers.image.title={{.ProjectName}}"
+      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+      - "--label=org.opencontainers.image.version={{.Version}}"
+
+  - use: buildx
+    goos: darwin
+    goarch: arm64
+    goarm: 8
+    image_templates:
+      - "fastid/{{ .ProjectName }}:{{ .Version }}-arm64v8"
+      - "fastid/{{ .ProjectName }}:latest-arm64v8"
+    build_flag_templates:
+      - "--platform=darwin/amd64"
+      - "--label=org.opencontainers.image.created={{.Date}}"
+      - "--label=org.opencontainers.image.title={{.ProjectName}}"
+      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+      - "--label=org.opencontainers.image.version={{.Version}}"
+
 docker_manifests:
   # https://goreleaser.com/customization/docker_manifest/
   - name_template: fastid/{{ .ProjectName }}:{{ .Version }}
