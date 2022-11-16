@@ -125,5 +125,5 @@ docker_manifests:
     image_templates:
       - fastid/{{ .ProjectName }}:latest-linux-amd64
       - fastid/{{ .ProjectName }}:latest-linux-arm64v8
-      - fastid/{{ .ProjectName }}:{{ .Version }}-darwin-amd64
-      - fastid/{{ .ProjectName }}:{{ .Version }}-darwin-arm64v8
+      - fastid/{{ .ProjectName }}:latest-darwin-amd64
+      - fastid/{{ .ProjectName }}:latest-darwin-arm64v8
