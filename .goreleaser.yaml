@@ -60,12 +60,12 @@ release:
 dockers:
   # https://goreleaser.com/customization/docker/
   - use: buildx
-    goos: darwin
-    goarch: arm64
+    goos: linux
+    goarch: amd64
     image_templates:
       - "fastid/tmp:latest"
     build_flag_templates:
-      - "--platform=darwin/arm64"
+      - "--platform=linux/amd64"
       - "--label=org.opencontainers.image.created={{.Date}}"
       - "--label=org.opencontainers.image.title={{.ProjectName}}"
       - "--label=org.opencontainers.image.revision={{.FullCommit}}"
