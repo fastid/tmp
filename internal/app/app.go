@@ -42,7 +42,7 @@ func Run(cfg *config.Config) {
 	log := logger.New(cfg)
 	log.Infoln("Starting the server")
 
-	if cfg.DATABASE.DriverName == "sqlite3" {
+	if cfg.DATABASE.DriverName == "sqlite" {
 		log.Warningln("Warning! Your server is running with sqlite, the data will be deleted after reboot")
 	}
 
