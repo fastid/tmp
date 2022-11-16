@@ -47,54 +47,54 @@ changelog:
       order: 999
 
 
-release:
-  github:
-    owner: fastid
-    name: tmp
-
-  target_commitish: '{{ .Commit }}'
-  prerelease: auto
-  mode: append
-  name_template: "v{{.Version}}"
-
-dockers:
-  # https://goreleaser.com/customization/docker/
-  - use: buildx
-    goos: linux
-    goarch: amd64
-    image_templates:
-      - "fastid/{{.ProjectName}}:{{ .Version }}-linux-amd64"
-    build_flag_templates:
-      - "--platform=linux/amd64"
-      - "--label=org.opencontainers.image.created={{.Date}}"
-      - "--label=org.opencontainers.image.title={{.ProjectName}}"
-      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
-      - "--label=org.opencontainers.image.version={{.Version}}"
-
-  - use: buildx
-    goos: linux
-    goarch: arm64
-    goarm: 8
-    image_templates:
-      - "fastid/{{ .ProjectName }}:{{ .Version }}-linux-arm64v8"
-    build_flag_templates:
-      - "--platform=linux/arm64/v8"
-      - "--label=org.opencontainers.image.created={{.Date}}"
-      - "--label=org.opencontainers.image.title={{.ProjectName}}"
-      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
-      - "--label=org.opencontainers.image.version={{.Version}}"
-
-  - use: buildx
-    goos: darwin
-    goarch: amd64
-    image_templates:
-      - "fastid/{{ .ProjectName }}:{{ .Version }}-darwin-amd64"
-    build_flag_templates:
-      - "--platform=darwin/amd64"
-      - "--label=org.opencontainers.image.created={{.Date}}"
-      - "--label=org.opencontainers.image.title={{.ProjectName}}"
-      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
-      - "--label=org.opencontainers.image.version={{.Version}}"
+#release:
+#  github:
+#    owner: fastid
+#    name: tmp
+#
+#  target_commitish: '{{ .Commit }}'
+#  prerelease: auto
+#  mode: append
+#  name_template: "v{{.Version}}"
+#
+#dockers:
+#  # https://goreleaser.com/customization/docker/
+#  - use: buildx
+#    goos: linux
+#    goarch: amd64
+#    image_templates:
+#      - "fastid/{{.ProjectName}}:{{ .Version }}-linux-amd64"
+#    build_flag_templates:
+#      - "--platform=linux/amd64"
+#      - "--label=org.opencontainers.image.created={{.Date}}"
+#      - "--label=org.opencontainers.image.title={{.ProjectName}}"
+#      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+#      - "--label=org.opencontainers.image.version={{.Version}}"
+#
+#  - use: buildx
+#    goos: linux
+#    goarch: arm64
+#    goarm: 8
+#    image_templates:
+#      - "fastid/{{ .ProjectName }}:{{ .Version }}-linux-arm64v8"
+#    build_flag_templates:
+#      - "--platform=linux/arm64/v8"
+#      - "--label=org.opencontainers.image.created={{.Date}}"
+#      - "--label=org.opencontainers.image.title={{.ProjectName}}"
+#      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+#      - "--label=org.opencontainers.image.version={{.Version}}"
+#
+#  - use: buildx
+#    goos: darwin
+#    goarch: amd64
+#    image_templates:
+#      - "fastid/{{ .ProjectName }}:{{ .Version }}-darwin-amd64"
+#    build_flag_templates:
+#      - "--platform=darwin/amd64"
+#      - "--label=org.opencontainers.image.created={{.Date}}"
+#      - "--label=org.opencontainers.image.title={{.ProjectName}}"
+#      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+#      - "--label=org.opencontainers.image.version={{.Version}}"
 
 #  - use: buildx
 #    goos: darwin
