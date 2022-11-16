@@ -84,17 +84,17 @@ dockers:
       - "--label=org.opencontainers.image.revision={{.FullCommit}}"
       - "--label=org.opencontainers.image.version={{.Version}}"
 
-#  - use: buildx
-#    goos: darwin
-#    goarch: amd64
-#    image_templates:
-#      - "fastid/{{ .ProjectName }}:{{ .Version }}-darwin-amd64"
-#    build_flag_templates:
-#      - "--platform=darwin/amd64"
-#      - "--label=org.opencontainers.image.created={{.Date}}"
-#      - "--label=org.opencontainers.image.title={{.ProjectName}}"
-#      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
-#      - "--label=org.opencontainers.image.version={{.Version}}"
+  - use: buildx
+    goos: darwin
+    goarch: amd64
+    image_templates:
+      - "fastid/{{ .ProjectName }}:{{ .Version }}-darwin-amd64"
+    build_flag_templates:
+      - "--platform=darwin/amd64"
+      - "--label=org.opencontainers.image.created={{.Date}}"
+      - "--label=org.opencontainers.image.title={{.ProjectName}}"
+      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+      - "--label=org.opencontainers.image.version={{.Version}}"
 
 #  - use: buildx
 #    goos: darwin
