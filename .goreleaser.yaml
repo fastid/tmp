@@ -59,30 +59,30 @@ release:
 
 dockers:
   # https://goreleaser.com/customization/docker/
-  - use: buildx
-    goos: linux
-    goarch: amd64
-    image_templates:
-      - "fastid/{{.ProjectName}}:{{ .Version }}-linux-amd64"
-    build_flag_templates:
-      - "--platform=linux/amd64"
-      - "--label=org.opencontainers.image.created={{.Date}}"
-      - "--label=org.opencontainers.image.title={{.ProjectName}}"
-      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
-      - "--label=org.opencontainers.image.version={{.Version}}"
-
-  - use: buildx
-    goos: linux
-    goarch: arm64
-    goarm: 8
-    image_templates:
-      - "fastid/{{ .ProjectName }}:{{ .Version }}-linux-arm64v8"
-    build_flag_templates:
-      - "--platform=linux/arm64/v8"
-      - "--label=org.opencontainers.image.created={{.Date}}"
-      - "--label=org.opencontainers.image.title={{.ProjectName}}"
-      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
-      - "--label=org.opencontainers.image.version={{.Version}}"
+#  - use: buildx
+#    goos: linux
+#    goarch: amd64
+#    image_templates:
+#      - "fastid/{{.ProjectName}}:{{ .Version }}-linux-amd64"
+#    build_flag_templates:
+#      - "--platform=linux/amd64"
+#      - "--label=org.opencontainers.image.created={{.Date}}"
+#      - "--label=org.opencontainers.image.title={{.ProjectName}}"
+#      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+#      - "--label=org.opencontainers.image.version={{.Version}}"
+#
+#  - use: buildx
+#    goos: linux
+#    goarch: arm64
+#    goarm: 8
+#    image_templates:
+#      - "fastid/{{ .ProjectName }}:{{ .Version }}-linux-arm64v8"
+#    build_flag_templates:
+#      - "--platform=linux/arm64/v8"
+#      - "--label=org.opencontainers.image.created={{.Date}}"
+#      - "--label=org.opencontainers.image.title={{.ProjectName}}"
+#      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+#      - "--label=org.opencontainers.image.version={{.Version}}"
 
   - use: buildx
     goos: darwin
@@ -96,29 +96,29 @@ dockers:
       - "--label=org.opencontainers.image.revision={{.FullCommit}}"
       - "--label=org.opencontainers.image.version={{.Version}}"
 
-  - use: buildx
-    goos: darwin
-    goarch: arm64
-    image_templates:
-      - "fastid/{{ .ProjectName }}:{{ .Version }}-darwin-arm64v8"
-    build_flag_templates:
-      - "--platform=darwin/arm64/v8"
-      - "--label=org.opencontainers.image.created={{.Date}}"
-      - "--label=org.opencontainers.image.title={{.ProjectName}}"
-      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
-      - "--label=org.opencontainers.image.version={{.Version}}"
+#  - use: buildx
+#    goos: darwin
+#    goarch: arm64
+#    image_templates:
+#      - "fastid/{{ .ProjectName }}:{{ .Version }}-darwin-arm64v8"
+#    build_flag_templates:
+#      - "--platform=darwin/arm64/v8"
+#      - "--label=org.opencontainers.image.created={{.Date}}"
+#      - "--label=org.opencontainers.image.title={{.ProjectName}}"
+#      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+#      - "--label=org.opencontainers.image.version={{.Version}}"
 
 docker_manifests:
   - name_template: fastid/{{ .ProjectName }}:{{ .Version }}
     image_templates:
-      - fastid/{{ .ProjectName }}:{{ .Version }}-linux-amd64
-      - fastid/{{ .ProjectName }}:{{ .Version }}-linux-arm64v8
+#      - fastid/{{ .ProjectName }}:{{ .Version }}-linux-amd64
+#      - fastid/{{ .ProjectName }}:{{ .Version }}-linux-arm64v8
       - fastid/{{ .ProjectName }}:{{ .Version }}-darwin-amd64
       - fastid/{{ .ProjectName }}:{{ .Version }}-darwin-arm64v8
 
   - name_template: fastid/{{ .ProjectName }}:latest
     image_templates:
-      - fastid/{{ .ProjectName }}:{{ .Version }}-linux-amd64
-      - fastid/{{ .ProjectName }}:{{ .Version }}-linux-arm64v8
+#      - fastid/{{ .ProjectName }}:{{ .Version }}-linux-amd64
+#      - fastid/{{ .ProjectName }}:{{ .Version }}-linux-arm64v8
       - fastid/{{ .ProjectName }}:{{ .Version }}-darwin-amd64
-      - fastid/{{ .ProjectName }}:{{ .Version }}-darwin-arm64v8
+#      - fastid/{{ .ProjectName }}:{{ .Version }}-darwin-arm64v8
