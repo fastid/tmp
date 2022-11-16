@@ -48,15 +48,15 @@ changelog:
       order: 999
 
 
-release:
-  github:
-    owner: fastid
-    name: tmp
-
-  target_commitish: '{{ .Commit }}'
-  prerelease: auto
-  mode: append
-  name_template: "v{{.Version}}"
+#release:
+#  github:
+#    owner: fastid
+#    name: tmp
+#
+#  target_commitish: '{{ .Commit }}'
+#  prerelease: auto
+#  mode: append
+#  name_template: "v{{.Version}}"
 
 #dockers:
 #  # https://goreleaser.com/customization/docker/
