@@ -99,7 +99,6 @@ dockers:
   - use: buildx
     goos: darwin
     goarch: arm64
-    goarm: 8
     image_templates:
       - "fastid/{{ .ProjectName }}:{{ .Version }}-darwin-arm64v8"
     build_flag_templates:
