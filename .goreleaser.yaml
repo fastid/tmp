@@ -7,15 +7,16 @@ builds:
   - main: ./cmd/
     id: "fastid"
     binary: fastid
-#    env:
-#      - CGO_ENABLED=1
+    env:
+      - CGO_ENABLED=0
     goos:
       - linux
       - darwin
     goarch:
       - amd64
       - arm64
-
+    ldflags:
+      - "-linkmode external -extldflags '-static' -s -w"
 
 archives:
   - name_template: "{{.ProjectName}}-{{.Version}}-{{.Os}}-{{.Arch}}"
@@ -55,7 +56,7 @@ release:
   prerelease: auto
   mode: append
   name_template: "v{{.Version}}"
-#
+
 #dockers:
 #  # https://goreleaser.com/customization/docker/
 #  - use: buildx
