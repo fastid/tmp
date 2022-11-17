@@ -35,7 +35,7 @@ jobs:
   docker-build-pub-linux:
     name: "Docker build and pub (linux)"
     runs-on: ubuntu-latest
-    need: ['goreleaser']
+    needs: ['goreleaser']
     steps:
       - uses: actions/checkout@v3
         with:
