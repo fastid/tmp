@@ -13,6 +13,15 @@ builds:
       - arm64
     ldflags: "-s -w"
 
+archives:
+  - name_template: "{{.ProjectName}}-{{.Version}}-{{.Os}}-{{.Arch}}"
+    files:
+      - LICENSE
+      - README.md
+      - src: './configs/fastid.yml'
+        dst: '.'
+        strip_parent: true
+
 dockers:
   # https://goreleaser.com/customization/docker/
   - use: buildx
