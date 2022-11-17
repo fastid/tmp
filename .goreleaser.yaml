@@ -1,8 +1,4 @@
 project_name: fastid
-#before:
-#  hooks:
-#    - go mod tidy
-#    - go mod vendor
 
 builds:
   - main: ./cmd/
@@ -49,7 +45,7 @@ changelog:
 release:
   github:
     owner: fastid
-    name: tmp
+    name: fastid
 
   target_commitish: '{{ .Commit }}'
   prerelease: auto
