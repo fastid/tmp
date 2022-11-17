@@ -36,11 +36,8 @@ func main() {
 		log.Fatalf("Config error: %s", err)
 	}
 
-	if runServer {
-		app.Run(cfg)
-
-	} else if migrate {
-		migration, err := migrations.New(cfg, "postgres")
+	if migrate {
+		migration, err := migrations.New(cfg, cfg.DriverName)
 		if err != nil {
 			log.Fatalf("Migration error: %s", err)
 		}
@@ -56,7 +53,12 @@ func main() {
 		} else {
 			log.Fatalf("No action passed to perform migration")
 		}
+	}
 
+	if runServer {
+		app.Run(cfg)
+	} else if migrate {
+		return
 	} else {
 		flag.PrintDefaults()
 	}
