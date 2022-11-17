@@ -40,7 +40,7 @@ changelog:
       regexp: '^.*?fix(\([[:word:]]+\))??!?:.+$'
       order: 30
     - title: Others
-      order: 999
+      order: 900
 
 release:
   github:
