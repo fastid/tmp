@@ -25,4 +25,4 @@ FROM scratch
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 COPY --from=builder fastid /fastid/fastid
 COPY --from=builder fastid.yml /fastid/fastid.yml
-ENTRYPOINT ["/fastid/fastid", "-config", "fastid.yml", "-run"]
+ENTRYPOINT ["/fastid/fastid", "-config", "./fastid.yml", "-run"]
