@@ -6,6 +6,7 @@ import (
 	"github.com/fastid/fastid/internal/db"
 	"github.com/fastid/fastid/internal/handlers"
 	"github.com/fastid/fastid/internal/logger"
+	"github.com/fastid/fastid/internal/migrations"
 	"github.com/fastid/fastid/internal/repositories"
 	"github.com/fastid/fastid/internal/services"
 	"github.com/fastid/fastid/internal/swagger"
@@ -66,6 +67,16 @@ func Run(cfg *config.Config) {
 			return nil
 		}},
 	))
+
+	// Migrate
+	migration, err := migrations.New(cfg, cfg.DATABASE.DriverName)
+	if err != nil {
+		log.Fatalln(err.Error())
+	}
+	err = migration.Upgrade()
+	if err != nil {
+		log.Fatalln(err.Error())
+	}
 
 	// DB
 	database, err := db.NewDB(cfg, cfg.DATABASE.DriverName)

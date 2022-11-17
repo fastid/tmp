@@ -8,9 +8,10 @@ import (
 	"github.com/golang-migrate/migrate/v4"
 	"github.com/golang-migrate/migrate/v4/database"
 	"github.com/golang-migrate/migrate/v4/database/postgres"
-	"github.com/golang-migrate/migrate/v4/database/sqlite3"
+	"github.com/golang-migrate/migrate/v4/database/sqlite"
 	_ "github.com/golang-migrate/migrate/v4/source/file"
 	"github.com/golang-migrate/migrate/v4/source/iofs"
+	_ "modernc.org/sqlite"
 )
 
 //go:embed sql/*.sql
@@ -30,7 +31,7 @@ type migration struct {
 func New(cfg *config.Config, driverName string) (Migration, error) {
 	var dsn string
 
-	if driverName == "sqlite3" {
+	if driverName == "sqlite" {
 		dsn = ":memory:"
 	} else if driverName == "postgres" {
 		dsn = fmt.Sprintf(
@@ -54,8 +55,8 @@ func New(cfg *config.Config, driverName string) (Migration, error) {
 	}
 
 	var driver database.Driver
-	if driverName == "sqlite3" {
-		driver, err = sqlite3.WithInstance(db, &sqlite3.Config{})
+	if driverName == "sqlite" {
+		driver, err = sqlite.WithInstance(db, &sqlite.Config{})
 		if err != nil {
 			return nil, err
 		}
