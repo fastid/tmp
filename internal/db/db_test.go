@@ -12,7 +12,7 @@ type Version struct {
 
 func TestDBSqlite3(t *testing.T) {
 	cfg, _ := config.New("../../configs/fastid.yml")
-	db, _ := NewDB(cfg, "sqlite3")
+	db, _ := NewDB(cfg, "sqlite")
 	sql := db.GetConnect()
 
 	var result Version

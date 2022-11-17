@@ -16,7 +16,7 @@ func TestSession(t *testing.T) {
 	}
 	log := logger.New(cfg)
 
-	database, err := db.NewDB(cfg, "sqlite3")
+	database, err := db.NewDB(cfg, "sqlite")
 	if err != nil {
 		log.Fatalln(err.Error())
 	}

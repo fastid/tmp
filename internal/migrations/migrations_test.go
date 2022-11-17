@@ -11,7 +11,7 @@ func TestMigrations(t *testing.T) {
 	cfg, err := config.New("../../configs/fastid.yml")
 	require.NoError(t, err)
 
-	migration, err := New(cfg, "sqlite3")
+	migration, err := New(cfg, "sqlite")
 	require.NoError(t, err)
 
 	err = migration.Upgrade()

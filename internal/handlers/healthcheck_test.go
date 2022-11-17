@@ -20,7 +20,7 @@ func TestHealthCheck(t *testing.T) {
 	log := logger.New(cfg)
 	log.Infoln("Starting the server")
 
-	database, err := db.NewDB(cfg, "sqlite3")
+	database, err := db.NewDB(cfg, "sqlite")
 	require.NoError(t, err)
 
 	// Storage
