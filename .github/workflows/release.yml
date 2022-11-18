@@ -30,6 +30,7 @@ jobs:
           version: latest
           args: release
         env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   docker-build-and-publish:
