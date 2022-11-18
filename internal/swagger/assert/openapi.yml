@@ -7,9 +7,27 @@ info:
     url: https://choosealicense.com/licenses/mit/
 
 paths:
-  /:
-    get:
-      summary: List API versions
+  /api/v1/unseal/:
+    post:
+      tags:
+        - Unseal
+      summary: Unseal database
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                secret_key:
+                  type: string
       responses:
-        '200':
-          description: 200 response
+        200:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  is_success:
+                    type: boolean
+          description: "200 response"

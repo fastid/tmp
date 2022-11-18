@@ -50,8 +50,6 @@ func main() {
 			if err := migration.Downgrade(); err != nil {
 				log.Fatalf("Migrations error: %s", err)
 			}
-		} else {
-			log.Fatalf("No action passed to perform migration")
 		}
 	}
 

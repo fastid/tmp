@@ -51,3 +51,9 @@ release:
   prerelease: auto
   mode: append
   name_template: "v{{.Version}}"
+
+announce:
+  telegram:
+    enabled: true
+    chat_id: -1001844494348
+    message_template: 'FastID project {{.Tag}} is out!'
