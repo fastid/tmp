@@ -6,7 +6,6 @@ import (
 	"crypto/rand"
 	b64 "encoding/base64"
 	"encoding/hex"
-	"fmt"
 	"github.com/fastid/fastid/internal/config"
 	log "github.com/sirupsen/logrus"
 	"io"
@@ -128,7 +127,8 @@ func (s *cryptService) Decrypt(encryptedBytes []byte) (decryptedString string, e
 	if err != nil {
 		return "", err
 	}
-	return fmt.Sprintf("%s", plaintext), nil
+
+	return string(plaintext), nil
 }
 
 func (s *cryptService) DecryptBase64(encryptedString string) (decryptedString string, err error) {
