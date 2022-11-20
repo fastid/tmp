@@ -8,6 +8,7 @@ import (
 )
 
 type ExampleService interface {
+	Register(srv Services)
 	GetByID(ctx context.Context) (string, error)
 }
 
@@ -15,6 +16,7 @@ type exampleService struct {
 	cfg          *config.Config
 	log          *log.Logger
 	repositories repositories.Repositories
+	services     Services
 }
 
 func NewExampleService(cfg *config.Config, log *log.Logger, repositories repositories.Repositories) ExampleService {
@@ -25,8 +27,12 @@ func NewExampleService(cfg *config.Config, log *log.Logger, repositories reposit
 	}
 }
 
-func (e *exampleService) GetByID(ctx context.Context) (string, error) {
-	res, err := e.repositories.Sessions().GetByID(ctx)
+func (s *exampleService) Register(srv Services) {
+	s.services = srv
+}
+
+func (s *exampleService) GetByID(ctx context.Context) (string, error) {
+	res, err := s.repositories.Sessions().GetByID(ctx)
 	if err != nil {
 		return "", err
 	}
