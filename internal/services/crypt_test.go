@@ -18,6 +18,10 @@ func TestCrypt(t *testing.T) {
 	cipher, err := crypt.GenerateCipher()
 	require.NoError(t, err)
 	require.NotEmpty(t, cipher)
+
+	crypt.SecretKey(cipher)
+	secretKey := crypt.GetSecretKey()
+	require.NotEmpty(t, secretKey)
 }
 
 func TestCryptEncryptDecryptB64(t *testing.T) {
